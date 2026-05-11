@@ -209,16 +209,14 @@ a {
   gap: clamp(2rem, 4vw, 4.5rem);
   align-items: center;
   margin-top: clamp(-3rem, -4vh, -1.5rem);
+  margin-bottom: clamp(3rem, 7vw, 6rem);
   padding: 5.75rem 0 4rem;
 }
 
 .hero-copy {
   position: relative;
   z-index: 2;
-  transform: translate(
-    clamp(-3.75rem, -4vw, -1.5rem),
-    clamp(-2rem, -3vh, -1rem)
-  );
+  transform: translateY(clamp(-2rem, -3vh, -1rem));
 }
 
 .eyebrow,
@@ -259,8 +257,8 @@ p {
 
 h1 {
   max-width: 10ch;
-  margin-bottom: 1rem;
-  font-size: clamp(3rem, 7vw, 6.8rem);
+  margin-bottom: 1.35rem;
+  font-size: clamp(2.85rem, 6.25vw, 6.1rem);
   line-height: 0.94;
   letter-spacing: 0;
 }
@@ -288,6 +286,12 @@ h3 {
   color: var(--accent);
   font-size: clamp(1.05rem, 2vw, 1.45rem);
   font-weight: 700;
+}
+
+.hero-subtitle,
+.hero-brief,
+.hero-actions {
+  transform: translateY(0.65rem);
 }
 
 .hero-brief,
@@ -358,8 +362,8 @@ h3 {
   position: relative;
   z-index: 1;
   transform: translate(
-    clamp(5rem, 6.0vw, 7.0rem),
-    clamp(7.25rem, 16vh, 10rem)
+    clamp(2rem, 3.25vw, 4rem),
+    clamp(10.75rem, 22vh, 13.5rem)
   );
 }
 
@@ -819,6 +823,42 @@ h3 {
   font-size: 0.86rem;
 }
 
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.team-card {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(13, 21, 19, 0.9), rgba(3, 5, 5, 0.92));
+  box-shadow: var(--shadow);
+  padding: clamp(1rem, 3vw, 1.6rem);
+  text-align: center;
+  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.team-card img {
+  width: min(100%, 180px);
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.team-card span {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.team-card:hover {
+  border-color: var(--border-strong);
+  background: linear-gradient(180deg, rgba(15, 27, 24, 0.94), rgba(4, 9, 8, 0.92));
+  transform: translateY(-2px);
+}
+
 .site-footer {
   display: flex;
   justify-content: space-between;
@@ -901,6 +941,12 @@ h3 {
     transform: none;
   }
 
+  .hero-subtitle,
+  .hero-brief,
+  .hero-actions {
+    transform: none;
+  }
+
   .hero-shot-main,
   .hero-shot-pair {
     width: 100%;
@@ -913,7 +959,8 @@ h3 {
   .pipeline,
   .architecture-flow,
   .gallery-grid,
-  .challenge-grid {
+  .challenge-grid,
+  .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -961,7 +1008,8 @@ h3 {
   .pipeline,
   .architecture-flow,
   .gallery-grid,
-  .challenge-grid {
+  .challenge-grid,
+  .team-grid {
     grid-template-columns: 1fr;
   }
 
