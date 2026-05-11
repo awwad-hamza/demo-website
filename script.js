@@ -53,6 +53,42 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
   });
 });
 
+const railLinks = [...document.querySelectorAll("[data-section-link]")];
+const sectionTargets = railLinks
+  .map((link) => document.getElementById(link.dataset.sectionLink))
+  .filter(Boolean);
+
+function setActiveRailLink(sectionId) {
+  railLinks.forEach((link) => {
+    const isActive = link.dataset.sectionLink === sectionId;
+    link.classList.toggle("is-active", isActive);
+
+    if (isActive) {
+      link.setAttribute("aria-current", "true");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
+if (sectionTargets.length > 0) {
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visibleEntry) setActiveRailLink(visibleEntry.target.id);
+    },
+    {
+      rootMargin: "-35% 0px -45% 0px",
+      threshold: [0.08, 0.2, 0.4, 0.65],
+    }
+  );
+
+  sectionTargets.forEach((section) => sectionObserver.observe(section));
+}
+
 document.querySelectorAll(".video-frame, .feature-media").forEach((frame) => {
   const media = frame.querySelector("video, img");
   const fallback = frame.querySelector(".media-fallback");

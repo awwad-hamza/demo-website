@@ -29,6 +29,37 @@
     </nav>
   </header>
 
+  <nav class="section-rail" aria-label="Page section indicator">
+    <a class="rail-link is-active" href="#hero" data-section-link="hero" aria-label="Hero section" aria-current="true">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Home</span>
+    </a>
+    <a class="rail-link" href="#overview" data-section-link="overview" aria-label="System overview section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">System</span>
+    </a>
+    <a class="rail-link" href="#costmap-demo" data-section-link="costmap-demo" aria-label="Costmap demo section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Costmap</span>
+    </a>
+    <a class="rail-link" href="#coverage-demo" data-section-link="coverage-demo" aria-label="Coverage demo section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Coverage</span>
+    </a>
+    <a class="rail-link" href="#simulation" data-section-link="simulation" aria-label="Simulation to reality section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Sim</span>
+    </a>
+    <a class="rail-link" href="#rviz" data-section-link="rviz" aria-label="RViz breakdown section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">RViz</span>
+    </a>
+    <a class="rail-link" href="#team" data-section-link="team" aria-label="Team section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Team</span>
+    </a>
+  </nav>
+
   <main id="main">
     <section class="hero section-grid" id="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
@@ -49,7 +80,7 @@
       <div class="hero-visual hero-screens" aria-label="RViz costmap, coverage, and simulation screenshots">
         <article class="hero-shot-card hero-shot-main">
           <div class="panel-topline">
-            <span>RViz Costmap</span>
+            <span>Costmap</span>
             <span class="panel-status"> </span>
           </div>
           <div class="video-frame screenshot-frame">
@@ -72,7 +103,7 @@
 
           <article class="hero-shot-card hero-shot-pointcloud">
             <div class="panel-topline">
-              <span>Point Cloud</span>
+              <span>Depth Estimation</span>
               <span class="panel-status"></span>
             </div>
             <div class="video-frame pointcloud-shot-frame">
@@ -124,9 +155,19 @@
           <p class="eyebrow">COSTMAP DEMO</p>
           <h2 id="costmap-demo-title">The robot’s safety model, visible in real time.</h2>
         </div>
-        <p>Costmaps turn sensor data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
+        <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
       </div>
       <article class="feature-panel">
+        <div class="feature-copy feature-copy-wide">
+          <span class="tech-label">RViz / Costmaps</span>
+          <h3>Understanding the Space</h3>
+          <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
+          <dl class="stats-grid">
+            <div><dt>Input</dt><dd>Live camera feed</dd></div>
+            <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
+            <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
+          </dl>
+        </div>
         <div class="feature-media panel-surface">
           <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png">
             <source src="assets/videos/rviz-costmap-demo.mp4" type="video/mp4">
@@ -134,15 +175,12 @@
           </video>
           <div class="media-fallback">Add assets/videos/rviz-costmap-demo.mp4</div>
         </div>
-        <div class="feature-copy">
-          <span class="tech-label">RViz / Costmaps</span>
-          <h3>Understanding the Space</h3>
-          <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
-          <dl class="stats-grid">
-            <div><dt>Input</dt><dd>Live sensor data</dd></div>
-            <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
-            <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
-          </dl>
+        <div class="feature-media panel-surface feature-media-robot">
+          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.jpg">
+            <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
+            Real robot deployment video placeholder.
+          </video>
+          <div class="media-fallback">Add real robot media</div>
         </div>
       </article>
     </section>
@@ -167,11 +205,6 @@
           <span class="tech-label">Coverage Planner</span>
           <h3>Systematic Space Coverage</h3>
           <p>The robot works through the environment in repeatable passes, using the map and costmap constraints instead of GPS or a pre-built route.</p>
-          <dl class="stats-grid">
-            <div><dt>Mode</dt><dd>Map-based autonomous coverage</dd></div>
-            <div><dt>Speed</dt><dd>1.5x playback</dd></div>
-            <div><dt>Output</dt><dd>Coverage path + costmap visualization</dd></div>
-          </dl>
         </div>
       </article>
     </section>
@@ -187,31 +220,23 @@
       <div class="comparison-grid">
         <article class="media-card">
           <div class="panel-topline">
-            <span>Simulation</span>
-            <span class="panel-status">Gazebo / RViz</span>
+            <span>Deployment</span>
           </div>
-          <div class="video-frame landscape-frame">
-            <video muted loop playsinline autoplay preload="metadata" poster="assets/images/gazebo-world-01.png">
-              <source src="assets/videos/gazebo-demo.mp4" type="video/mp4">
-              Gazebo simulation video placeholder.
-            </video>
-            <div class="media-fallback">Add simulation media</div>
+          <div class="video-frame deployment-frame">
+            <img src="assets/images/deployment.png" alt="Physical robot deployment setup">
+            <div class="media-fallback">Add assets/images/deployment.png</div>
           </div>
-          <p>World models and simulated sensors expose mapping and coverage behavior before hardware tests.</p>
+          <p>Real tests verify traction, sensor placement, localization quality, and safe motion under imperfect conditions.</p>
         </article>
         <article class="media-card">
           <div class="panel-topline">
-            <span>Real Robot</span>
-            <span class="panel-status">Physical Run</span>
+            <span>Simulation</span>
           </div>
-          <div class="video-frame portrait-frame">
-            <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.jpg">
-              <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
-              Physical robot deployment video placeholder.
-            </video>
-            <div class="media-fallback">Add real robot media</div>
+          <div class="video-frame pointcloud-sim-frame">
+            <img src="assets/images/pointcloud-sim.png" alt="Point cloud simulation view">
+            <div class="media-fallback">Add assets/images/pointcloud-sim.png</div>
           </div>
-          <p>Real tests verify traction, sensor placement, localization quality, and safe motion under imperfect conditions.</p>
+          <p>World models and simulated sensors expose mapping and coverage behavior before hardware tests.</p>
         </article>
       </div>
     </section>
@@ -222,14 +247,6 @@
           <h2 id="rviz-title">Mapping and costmap intelligence made visible.</h2>
       </div>
       <div class="gallery-grid">
-        <article class="gallery-card">
-          <img src="assets/images/slam-map-01.png" alt="SLAM occupancy grid placeholder">
-          <div>
-            <span class="tag">Occupancy Grid</span>
-            <h3>Mapped Structure</h3>
-            <p>Walls and occupied regions become the spatial reference for localization and planning.</p>
-          </div>
-        </article>
         <article class="gallery-card">
           <img src="assets/images/costmap-inflation-01.png" alt="Costmap inflation placeholder">
           <div>
@@ -254,8 +271,8 @@
             <p>Gazebo scenes make it possible to repeat navigation trials before real deployment.</p>
           </div>
         </article>
-        <article class="gallery-card">
-          <img src="assets/images/real-robot-01.jpg" alt="Real robot deployment placeholder">
+        <article class="gallery-card gallery-card-contain">
+          <img src="assets/images/real-robot-01.png" alt="Real robot deployment placeholder">
           <div>
             <span class="tag">Deployment</span>
             <h3>Physical Behavior</h3>
@@ -265,50 +282,11 @@
       </div>
     </section>
 
-    <section class="section challenges" id="challenges" aria-labelledby="challenges-title">
-      <div class="section-heading">
-        <p class="eyebrow">ENGINEERING CHALLENGES</p>
-        <h2 id="challenges-title">The parts that had to be tuned, not just shown.</h2>
-      </div>
-      <div class="challenge-grid">
-        <article class="challenge-card">
-          <span class="tech-label">SLAM</span>
-          <h3>SLAM Drift</h3>
-          <p>Map alignment can degrade during longer runs.</p>
-          <strong>Tuned: loop closure checks, motion speed, sensor placement.</strong>
-        </article>
-        <article class="challenge-card">
-          <span class="tech-label">Nav2</span>
-          <h3>Costmap Tuning</h3>
-          <p>Too much inflation blocks paths; too little creates risky plans.</p>
-          <strong>Tuned: inflation radius, obstacle persistence, footprint.</strong>
-        </article>
-        <article class="challenge-card">
-          <span class="tech-label">Sensors</span>
-          <h3>Sensor Noise</h3>
-          <p>Real readings introduce false edges and unstable obstacle points.</p>
-          <strong>Tested: filtering, update rates, mounting height.</strong>
-        </article>
-        <article class="challenge-card">
-          <span class="tech-label">Localization</span>
-          <h3>Pose Recovery</h3>
-          <p>Coverage depends on stable pose estimates while the robot builds and follows its map.</p>
-          <strong>Tuned: AMCL/pose parameters, startup routine, motion speed.</strong>
-        </article>
-        <article class="challenge-card">
-          <span class="tech-label">Deployment</span>
-          <h3>Sim-to-Real Gaps</h3>
-          <p>Simulation is clean; floors, wheels, and lighting are not.</p>
-          <strong>Tested: speed limits, acceleration, obstacle margins.</strong>
-        </article>
-      </div>
-    </section>
-
     <section class="section team" id="team" aria-labelledby="team-title">
       <div class="section-heading split-heading">
         <div>
           <p class="eyebrow">TEAM</p>
-          <h2 id="team-title">Meet Us :)</h2>
+          <h2 id="team-title">Get To Know Us :)</h2>
         </div>
       </div>
       <div class="team-grid" aria-label="Team members">
