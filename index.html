@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MOBOROBOT maps and covers spaces without GPS or pre-built maps using SLAM, costmaps, and coverage planning.">
+  <title>MOBOROBOT | Mapping & Coverage Robot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cursor-glow" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" aria-label="Primary navigation">
+    <nav class="nav-shell">
+      <a class="brand" href="#hero" aria-label="MOBOROBOT project home">
+        <span class="brand-mark"></span>
+        <span>MOBOROBOT</span>
+      </a>
+      <div class="nav-links" aria-label="Section links">
+        <a href="#costmap-demo">Costmaps</a>
+        <a href="#coverage-demo">Coverage</a>
+        <a href="#rviz">RViz</a>
+      </div>
+      <a class="nav-github" href="https://github.com/leenslf/duckie-coverage" aria-label="GitHub repository placeholder">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-grid" id="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">
+          <span>MOBOROBOT</span>
+          <span>Maps&nbsp;&amp;</span>
+          <span>Covers</span>
+          <span>Any Space</span>
+        </h1>
+        <p class="hero-subtitle">No GPS. No pre-built maps. Just onboard mapping, costmaps, and coverage.</p>
+        <p class="hero-brief">A physical robot that builds its understanding of a space, visualizes safe movement through costmaps, then systematically covers reachable regions.</p>
+        <div class="hero-actions" aria-label="Hero actions">
+          <a class="button button-primary" href="#costmap-demo">Costmap Demo</a>
+          <a class="button button-secondary" href="#coverage-demo">Coverage Demo</a>
+        </div>
+      </div>
+
+      <div class="hero-visual hero-screens" aria-label="RViz costmap, coverage, and simulation screenshots">
+        <article class="hero-shot-card hero-shot-main">
+          <div class="panel-topline">
+            <span>RViz Costmap</span>
+            <span class="panel-status">Primary View</span>
+          </div>
+          <div class="video-frame screenshot-frame">
+            <img src="assets/images/costmap-rviz-hero.png" alt="RViz costmap screenshot showing autonomous navigation state">
+            <div class="media-fallback">Add assets/images/costmap-rviz-hero.png</div>
+          </div>
+        </article>
+
+        <div class="hero-shot-pair" aria-label="Supporting navigation screenshots">
+          <article class="hero-shot-card hero-shot-coverage">
+            <div class="panel-topline">
+              <span>Coverage</span>
+              <span class="panel-status">Traversal</span>
+            </div>
+            <div class="video-frame coverage-shot-frame">
+              <img src="assets/images/coverage-rviz-01.png" alt="Coverage path screenshot in RViz">
+              <div class="media-fallback">Add assets/images/coverage-rviz-01.png</div>
+            </div>
+          </article>
+
+          <article class="hero-shot-card hero-shot-pointcloud">
+            <div class="panel-topline">
+              <span>Point Cloud</span>
+              <span class="panel-status">Simulation</span>
+            </div>
+            <div class="video-frame pointcloud-shot-frame">
+              <img src="assets/images/simulation-pointcloud-01.png" alt="Simulation point cloud screenshot">
+              <div class="media-fallback">Add assets/images/simulation-pointcloud-01.png</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section overview" id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <p class="eyebrow">SYSTEM OVERVIEW</p>
+        <h2 id="overview-title">From unknown space to covered space.</h2>
+      </div>
+      <div class="pipeline" aria-label="Robotics pipeline">
+        <article class="pipeline-card">
+          <span class="tech-label">Sensors</span>
+          <h3>Perception</h3>
+          <p>Onboard sensors observe the space without GPS or prior maps.</p>
+        </article>
+        <article class="pipeline-card">
+          <span class="tech-label">SLAM</span>
+          <h3>Live Mapping</h3>
+          <p>The robot localizes itself while building a usable map from scratch.</p>
+        </article>
+        <article class="pipeline-card featured">
+          <span class="tech-label">Costmaps</span>
+          <h3>Safety Model</h3>
+          <p>Free space, obstacles, and inflated danger zones become visible.</p>
+        </article>
+        <article class="pipeline-card featured">
+          <span class="tech-label">Coverage</span>
+          <h3>Coverage Planning</h3>
+          <p>Reachable regions are converted into systematic traversal paths.</p>
+        </article>
+        <article class="pipeline-card">
+          <span class="tech-label">Control</span>
+          <h3>Motion Execution</h3>
+          <p>Motion commands carry out the coverage plan on the real robot.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section demo-feature costmap-feature" id="costmap-demo" aria-labelledby="costmap-demo-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">COSTMAP DEMO</p>
+          <h2 id="costmap-demo-title">The robot’s safety model, visible in real time.</h2>
+        </div>
+        <p>Costmaps turn sensor data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
+      </div>
+      <article class="feature-panel">
+        <div class="feature-media panel-surface">
+          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png">
+            <source src="assets/videos/rviz-costmap-demo.mp4" type="video/mp4">
+            Costmap demo video placeholder.
+          </video>
+          <div class="media-fallback">Add assets/videos/rviz-costmap-demo.mp4</div>
+        </div>
+        <div class="feature-copy">
+          <span class="tech-label">RViz / Costmaps</span>
+          <h3>Understanding the Space</h3>
+          <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
+          <dl class="stats-grid">
+            <div><dt>Input</dt><dd>Live sensor data</dd></div>
+            <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
+            <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
+          </dl>
+        </div>
+      </article>
+    </section>
+
+    <section class="section demo-feature coverage-feature" id="coverage-demo" aria-labelledby="coverage-demo-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">COVERAGE DEMO</p>
+          <h2 id="coverage-demo-title">Coverage turns the map into action.</h2>
+        </div>
+        <p>Once MOBOROBOT understands the space, coverage planning decides where to go so reachable areas are systematically visited.</p>
+      </div>
+      <article class="feature-panel feature-panel-reverse">
+        <div class="feature-media panel-surface feature-media-wide">
+          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png" data-playback-rate="1.5">
+            <source src="assets/videos/coverage-demo.mp4" type="video/mp4">
+            Coverage demo video placeholder.
+          </video>
+          <div class="media-fallback">Add assets/videos/coverage-demo.mp4</div>
+        </div>
+        <div class="feature-copy">
+          <span class="tech-label">Coverage Planner</span>
+          <h3>Systematic Space Coverage</h3>
+          <p>The robot works through the environment in repeatable passes, using the map and costmap constraints instead of GPS or a pre-built route.</p>
+          <dl class="stats-grid">
+            <div><dt>Mode</dt><dd>Map-based autonomous coverage</dd></div>
+            <div><dt>Speed</dt><dd>1.5x playback</dd></div>
+            <div><dt>Output</dt><dd>Coverage path + costmap visualization</dd></div>
+          </dl>
+        </div>
+      </article>
+    </section>
+
+    <section class="section sim-real" id="simulation" aria-labelledby="simulation-title">
+      <div class="section-heading split-heading">
+        <div>
+          <p class="eyebrow">SIMULATION TO REALITY</p>
+          <h2 id="simulation-title">Validate first. Deploy second.</h2>
+        </div>
+        <p>Gazebo and RViz are used to test mapping, costmap behavior, and coverage before physical deployment.</p>
+      </div>
+      <div class="comparison-grid">
+        <article class="media-card">
+          <div class="panel-topline">
+            <span>Simulation</span>
+            <span class="panel-status">Gazebo / RViz</span>
+          </div>
+          <div class="video-frame landscape-frame">
+            <video muted loop playsinline autoplay preload="metadata" poster="assets/images/gazebo-world-01.png">
+              <source src="assets/videos/gazebo-demo.mp4" type="video/mp4">
+              Gazebo simulation video placeholder.
+            </video>
+            <div class="media-fallback">Add simulation media</div>
+          </div>
+          <p>World models and simulated sensors expose mapping and coverage behavior before hardware tests.</p>
+        </article>
+        <article class="media-card">
+          <div class="panel-topline">
+            <span>Real Robot</span>
+            <span class="panel-status">Physical Run</span>
+          </div>
+          <div class="video-frame portrait-frame">
+            <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.jpg">
+              <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
+              Physical robot deployment video placeholder.
+            </video>
+            <div class="media-fallback">Add real robot media</div>
+          </div>
+          <p>Real tests verify traction, sensor placement, localization quality, and safe motion under imperfect conditions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section rviz" id="rviz" aria-labelledby="rviz-title">
+      <div class="section-heading">
+        <p class="eyebrow">COSTMAP / RVIZ BREAKDOWN</p>
+          <h2 id="rviz-title">Mapping and costmap intelligence made visible.</h2>
+      </div>
+      <div class="gallery-grid">
+        <article class="gallery-card">
+          <img src="assets/images/slam-map-01.png" alt="SLAM occupancy grid placeholder">
+          <div>
+            <span class="tag">Occupancy Grid</span>
+            <h3>Mapped Structure</h3>
+            <p>Walls and occupied regions become the spatial reference for localization and planning.</p>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <img src="assets/images/costmap-inflation-01.png" alt="Costmap inflation placeholder">
+          <div>
+            <span class="tag">Inflation Layer</span>
+            <h3>Obstacle Buffering</h3>
+            <p>Inflation zones keep the robot from planning too close to detected obstacles.</p>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <img src="assets/images/coverage-rviz-01.png" alt="Coverage path RViz placeholder">
+          <div>
+            <span class="tag">Coverage Trail</span>
+            <h3>Planned Traversal</h3>
+            <p>Coverage paths show which reachable regions have been systematically visited.</p>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <img src="assets/images/gazebo-world-01.png" alt="Gazebo world placeholder">
+          <div>
+            <span class="tag">Simulation</span>
+            <h3>Test Environment</h3>
+            <p>Gazebo scenes make it possible to repeat navigation trials before real deployment.</p>
+          </div>
+        </article>
+        <article class="gallery-card">
+          <img src="assets/images/real-robot-01.jpg" alt="Real robot deployment placeholder">
+          <div>
+            <span class="tag">Deployment</span>
+            <h3>Physical Behavior</h3>
+            <p>Real footage confirms the planner survives lighting, floor, and sensor imperfections.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section challenges" id="challenges" aria-labelledby="challenges-title">
+      <div class="section-heading">
+        <p class="eyebrow">ENGINEERING CHALLENGES</p>
+        <h2 id="challenges-title">The parts that had to be tuned, not just shown.</h2>
+      </div>
+      <div class="challenge-grid">
+        <article class="challenge-card">
+          <span class="tech-label">SLAM</span>
+          <h3>SLAM Drift</h3>
+          <p>Map alignment can degrade during longer runs.</p>
+          <strong>Tuned: loop closure checks, motion speed, sensor placement.</strong>
+        </article>
+        <article class="challenge-card">
+          <span class="tech-label">Nav2</span>
+          <h3>Costmap Tuning</h3>
+          <p>Too much inflation blocks paths; too little creates risky plans.</p>
+          <strong>Tuned: inflation radius, obstacle persistence, footprint.</strong>
+        </article>
+        <article class="challenge-card">
+          <span class="tech-label">Sensors</span>
+          <h3>Sensor Noise</h3>
+          <p>Real readings introduce false edges and unstable obstacle points.</p>
+          <strong>Tested: filtering, update rates, mounting height.</strong>
+        </article>
+        <article class="challenge-card">
+          <span class="tech-label">Localization</span>
+          <h3>Pose Recovery</h3>
+          <p>Coverage depends on stable pose estimates while the robot builds and follows its map.</p>
+          <strong>Tuned: AMCL/pose parameters, startup routine, motion speed.</strong>
+        </article>
+        <article class="challenge-card">
+          <span class="tech-label">Deployment</span>
+          <h3>Sim-to-Real Gaps</h3>
+          <p>Simulation is clean; floors, wheels, and lighting are not.</p>
+          <strong>Tested: speed limits, acceleration, obstacle margins.</strong>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>MOBOROBOT</strong>
+      <p>A robot that maps and covers any space, with no GPS and no pre-built maps.</p>
+    </div>
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <span>ROS2</span>
+      <span>Nav2</span>
+      <span>SLAM</span>
+      <span>Gazebo</span>
+      <span>RViz</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
