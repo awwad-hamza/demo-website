@@ -332,7 +332,6 @@ a {
 .brand-label,
 .eyebrow,
 .tech-label,
-.tag,
 .panel-topline {
   font-family: var(--mono);
   letter-spacing: 0.08em;
@@ -405,8 +404,6 @@ h3 {
 
 .hero-brief,
 .section-heading p,
-.media-card p,
-.gallery-card p,
 .overview-console p,
 .feature-copy p,
 .site-footer p {
@@ -522,13 +519,11 @@ h3 {
 
 .video-card,
 .hero-shot-card,
-.media-card,
 .panel-surface,
 .overview-hardware,
 .overview-console,
 .method-panel,
 .metrics-panel,
-.gallery-card,
 .team-card,
 .feature-copy {
   position: relative;
@@ -543,9 +538,7 @@ h3 {
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
-.media-card::before,
 .panel-surface::before,
-.gallery-card::before,
 .team-card::before,
 .feature-copy::before,
 .overview-hardware::before,
@@ -561,10 +554,8 @@ h3 {
   opacity: 0.6;
 }
 
-.media-card:hover,
 .panel-surface:hover,
 .overview-hardware:hover,
-.gallery-card:hover,
 .team-card:hover,
 .method-panel:hover {
   transform: translateY(-4px);
@@ -1022,8 +1013,7 @@ h3 {
   font-size: 0.98rem;
 }
 
-.tech-label,
-.tag {
+.tech-label {
   display: inline-flex;
   width: fit-content;
   margin-bottom: 0.7rem;
@@ -1064,10 +1054,10 @@ h3 {
   min-height: 2.45rem;
   border: 1px solid transparent;
   border-radius: 999px;
-  padding: 0.55rem 0.9rem;
+  padding: 0.55rem 0.8rem;
   color: var(--muted);
   background: transparent;
-  font: 900 0.72rem/1 var(--mono);
+  font: 900 0.68rem/1 var(--mono);
   text-transform: uppercase;
   transition: color 180ms ease, background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
@@ -1231,21 +1221,6 @@ h3 {
   background: linear-gradient(135deg, rgba(14, 165, 255, 0.06), transparent 45%), #02040a;
 }
 
-.pointcloud-sim-frame {
-  aspect-ratio: 1209 / 680;
-  min-height: 0;
-}
-
-.deployment-frame {
-  min-height: 0;
-}
-
-.deployment-frame img {
-  width: 85%;
-  height: auto;
-  max-height: 620px;
-}
-
 .video-frame video,
 .video-frame img {
   position: relative;
@@ -1271,56 +1246,6 @@ h3 {
 
 .media-fallback[hidden] {
   display: none;
-}
-
-.comparison-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: stretch;
-}
-
-.media-card p {
-  margin: 1rem;
-}
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.gallery-card {
-  display: grid;
-  grid-template-rows: 240px 1fr;
-}
-
-.gallery-card img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background: #02040a;
-  border-bottom: 1px solid rgba(14, 165, 255, 0.18);
-}
-
-.gallery-card-contain img {
-  object-fit: contain;
-}
-
-.gallery-card div {
-  position: relative;
-  z-index: 1;
-  padding: 1rem;
-}
-
-.tag {
-  color: #dff5ff;
-  background: rgba(14, 165, 255, 0.16);
-  border: 1px solid rgba(14, 165, 255, 0.24);
-  border-radius: 999px;
-  padding: 0.32rem 0.5rem;
 }
 
 .team-grid {
@@ -1488,9 +1413,11 @@ h3 {
 
   .demo-switch {
     justify-self: start;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .gallery-grid,
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1577,13 +1504,11 @@ h3 {
   }
 
   .hero-actions,
-  .comparison-grid,
   .overview-layout,
   .overview-flow,
   .hardware-specs div,
   .method-stack,
   .method-steps li,
-  .gallery-grid,
   .team-grid,
   .stats-grid {
     grid-template-columns: 1fr;
@@ -1596,7 +1521,7 @@ h3 {
   .demo-switch {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     border-radius: 18px;
   }
 

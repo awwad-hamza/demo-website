@@ -26,7 +26,7 @@
         <a href="#methods">Methods</a>
         <a href="#metrics">Metrics</a>
         <a href="#demos">Demos</a>
-        <a href="#rviz">RViz</a>
+        <a href="#team">Team</a>
       </div>
       <a class="nav-github" href="https://github.com/leenslf/duckie-coverage" aria-label="MOBOROBOT GitHub repository">GitHub</a>
     </nav>
@@ -52,14 +52,6 @@
     <a class="rail-link" href="#demos" data-section-link="demos" aria-label="Demos section">
       <span class="rail-dot"></span>
       <span class="rail-label">Demos</span>
-    </a>
-    <a class="rail-link" href="#simulation" data-section-link="simulation" aria-label="Simulation to reality section">
-      <span class="rail-dot"></span>
-      <span class="rail-label">Sim</span>
-    </a>
-    <a class="rail-link" href="#rviz" data-section-link="rviz" aria-label="RViz breakdown section">
-      <span class="rail-dot"></span>
-      <span class="rail-label">RViz</span>
     </a>
     <a class="rail-link" href="#team" data-section-link="team" aria-label="Team section">
       <span class="rail-dot"></span>
@@ -334,16 +326,47 @@
           <h2 id="demos-title">Choose what behavior to inspect.</h2>
         </div>
         <div class="demo-switch" role="tablist" aria-label="Demo selector">
-          <button class="demo-tab is-active" type="button" role="tab" id="costmap-demo-tab" aria-selected="true" aria-controls="costmap-demo-panel" data-demo-tab="costmap">Costmap</button>
+          <button class="demo-tab is-active" type="button" role="tab" id="odometry-demo-tab" aria-selected="true" aria-controls="odometry-demo-panel" data-demo-tab="odometry">Odometry &amp; SLAM</button>
+          <button class="demo-tab" type="button" role="tab" id="navigation-demo-tab" aria-selected="false" aria-controls="navigation-demo-panel" data-demo-tab="navigation">Navigation</button>
           <button class="demo-tab" type="button" role="tab" id="coverage-demo-tab" aria-selected="false" aria-controls="coverage-demo-panel" data-demo-tab="coverage">Coverage</button>
         </div>
       </div>
 
       <div class="demo-panels">
-        <article class="demo-panel costmap-feature is-active" id="costmap-demo-panel" role="tabpanel" aria-labelledby="costmap-demo-tab" data-demo-panel="costmap">
+        <article class="demo-panel odometry-feature is-active" id="odometry-demo-panel" role="tabpanel" aria-labelledby="odometry-demo-tab" data-demo-panel="odometry">
           <div class="section-heading split-heading demo-panel-heading">
             <div>
-              <p class="eyebrow">COSTMAP DEMO</p>
+              <p class="eyebrow">ODOMETRY &amp; SLAM</p>
+              <h3>RTAB-Map turns camera motion into a map.</h3>
+            </div>
+            <p>Visual-inertial odometry estimates robot motion, while RTAB-Map SLAM builds an occupancy map and closes loops from RGB-D observations.</p>
+          </div>
+          <div class="feature-panel">
+            <div class="feature-copy feature-copy-wide">
+              <span class="tech-label">RTAB-Map / Point Cloud</span>
+              <h3>Pose, Depth, and Map Feedback</h3>
+              <p>The robot uses OAK-D depth and IMU data to estimate motion, generate point clouds, and maintain a map that downstream navigation can consume.</p>
+              <dl class="stats-grid">
+                <div><dt>Input</dt><dd>RGB-D + IMU</dd></div>
+                <div><dt>Estimate</dt><dd>Visual odometry</dd></div>
+                <div><dt>Output</dt><dd>SLAM map</dd></div>
+              </dl>
+            </div>
+            <div class="feature-media panel-surface">
+              <img src="assets/images/pointcloud-sim.png" alt="Point cloud visualization from simulation">
+              <div class="media-fallback">Add point cloud media</div>
+            </div>
+            <div class="feature-media panel-surface">
+              <img src="assets/images/simulation-pointcloud-01.png" alt="RTAB-Map point cloud and mapping view">
+              <div class="media-fallback">Add SLAM media</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-panel navigation-feature costmap-feature" id="navigation-demo-panel" role="tabpanel" aria-labelledby="navigation-demo-tab" data-demo-panel="navigation" hidden>
+          <div class="section-heading split-heading demo-panel-heading">
+            <div>
+              <p class="eyebrow">NAVIGATION</p>
               <h3>The robot's safety model, visible in real time.</h3>
             </div>
             <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
@@ -397,79 +420,6 @@
               <h3>Systematic Space Coverage</h3>
               <p>The robot works through the environment in repeatable passes, using the map and costmap constraints instead of GPS or a pre-built route.</p>
             </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section sim-real" id="simulation" aria-labelledby="simulation-title">
-      <div class="section-heading split-heading">
-        <div>
-          <p class="eyebrow">SIMULATION TO REALITY</p>
-          <h2 id="simulation-title">Validate first. Deploy second.</h2>
-        </div>
-        <p>Gazebo and RViz are used to test mapping, costmap behavior, and coverage before physical deployment.</p>
-      </div>
-      <div class="comparison-grid">
-        <article class="media-card">
-          <div class="panel-topline">
-            <span>Deployment</span>
-          </div>
-          <div class="video-frame deployment-frame">
-            <img src="assets/images/deployment.png" alt="Physical robot deployment setup">
-            <div class="media-fallback">Add assets/images/deployment.png</div>
-          </div>
-          <p>Real tests verify traction, sensor placement, localization quality, and safe motion under imperfect conditions.</p>
-        </article>
-        <article class="media-card">
-          <div class="panel-topline">
-            <span>Simulation</span>
-          </div>
-          <div class="video-frame pointcloud-sim-frame">
-            <img src="assets/images/pointcloud-sim.png" alt="Point cloud simulation view">
-            <div class="media-fallback">Add assets/images/pointcloud-sim.png</div>
-          </div>
-          <p>World models and simulated sensors expose mapping and coverage behavior before hardware tests.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section rviz" id="rviz" aria-labelledby="rviz-title">
-      <div class="section-heading">
-        <p class="eyebrow">COSTMAP / RVIZ BREAKDOWN</p>
-        <h2 id="rviz-title">Mapping and costmap intelligence made visible.</h2>
-      </div>
-      <div class="gallery-grid">
-        <article class="gallery-card">
-          <img src="assets/images/costmap-inflation-01.png" alt="Costmap inflation placeholder">
-          <div>
-            <span class="tag">Inflation Layer</span>
-            <h3>Obstacle Buffering</h3>
-            <p>Inflation zones keep the robot from planning too close to detected obstacles.</p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img src="assets/images/coverage-rviz-01.png" alt="Coverage path RViz placeholder">
-          <div>
-            <span class="tag">Coverage Trail</span>
-            <h3>Planned Traversal</h3>
-            <p>Coverage paths show which reachable regions have been systematically visited.</p>
-          </div>
-        </article>
-        <article class="gallery-card">
-          <img src="assets/images/gazebo-world-01.png" alt="Gazebo world placeholder">
-          <div>
-            <span class="tag">Simulation</span>
-            <h3>Test Environment</h3>
-            <p>Gazebo scenes make it possible to repeat navigation trials before real deployment.</p>
-          </div>
-        </article>
-        <article class="gallery-card gallery-card-contain">
-          <img src="assets/images/real-robot-01.png" alt="Real robot deployment placeholder">
-          <div>
-            <span class="tag">Deployment</span>
-            <h3>Physical Behavior</h3>
-            <p>Real footage confirms the planner survives lighting, floor, and sensor imperfections.</p>
           </div>
         </article>
       </div>
