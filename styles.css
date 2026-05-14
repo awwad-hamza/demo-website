@@ -935,69 +935,59 @@ h3 {
 
 .metrics-panel {
   display: grid;
-  grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
-  gap: 1rem;
-  padding: clamp(1rem, 2.5vw, 1.4rem);
+  grid-template-columns: 1fr;
+  gap: 1.15rem;
+  padding: clamp(1rem, 2.5vw, 1.55rem);
 }
 
-.metrics-table-wrap,
+.slam-comparison,
 .metrics-summary {
   position: relative;
   z-index: 1;
 }
 
-.metrics-table-wrap {
-  overflow-x: auto;
-}
-
-.metrics-table {
+.slam-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  order: 2;
+  gap: 1.1rem;
   width: 100%;
-  min-width: 560px;
-  border-collapse: collapse;
+  justify-self: center;
+}
+
+.slam-frame {
   overflow: hidden;
-  border-radius: 8px;
-  font-family: var(--mono);
+  border: 1px solid rgba(14, 165, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(2, 4, 10, 0.34);
 }
 
-.metrics-table th,
-.metrics-table td {
-  padding: 1rem;
-  border-bottom: 1px solid rgba(14, 165, 255, 0.18);
-  text-align: left;
-  vertical-align: top;
+.slam-frame img {
+  width: 100%;
+  aspect-ratio: 1238 / 748;
+  object-fit: cover;
+  background: #000;
 }
 
-.metrics-table thead th {
-  color: #00101f;
-  background: linear-gradient(135deg, var(--accent), #7dd9ff);
-  font-size: 0.7rem;
+.slam-frame figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 0.85rem 1rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(14, 165, 255, 0.14);
+  font-size: 0.88rem;
+}
+
+.slam-frame figcaption span {
+  color: var(--accent);
+  font: 900 0.68rem/1 var(--mono);
   text-transform: uppercase;
 }
 
-.metrics-table tbody th {
-  width: 34%;
-  color: var(--text);
-  background: rgba(2, 4, 10, 0.4);
-  font-size: 0.78rem;
-}
-
-.metrics-table td {
-  color: var(--muted);
-  background: rgba(2, 4, 10, 0.28);
-  font-size: 0.82rem;
-}
-
-.metrics-table td:last-child {
-  border-left: 1px solid rgba(14, 165, 255, 0.26);
-  background: rgba(14, 165, 255, 0.1);
-}
-
-.metric-good {
-  color: var(--text) !important;
-  font-weight: 900;
-}
-
 .metrics-summary {
+  order: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1548,8 +1538,8 @@ h3 {
     min-height: 0;
   }
 
-  .metrics-table {
-    min-width: 480px;
+  .slam-comparison {
+    grid-template-columns: 1fr;
   }
 
   .method-steps li {

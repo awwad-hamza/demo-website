@@ -24,7 +24,7 @@
       <div class="nav-links" aria-label="Section links">
         <a href="#overview">Overview</a>
         <a href="#methods">Methods</a>
-        <a href="#metrics">Metrics</a>
+        <a href="#metrics">Results</a>
         <a href="#demos">Demos</a>
         <a href="#team">Team</a>
       </div>
@@ -283,38 +283,31 @@
     <section class="section metrics" id="metrics" aria-labelledby="metrics-title">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">RESULTS &amp; METRICS</p>
-          <h2 id="metrics-title">RTAB-Map kept localization drift low.</h2>
+          <p class="eyebrow">Results</p>
+          <h2 id="metrics-title">SLAM Loop Closure</h2>
         </div>
       </div>
 
       <article class="metrics-panel">
-        <div class="metrics-table-wrap">
-          <table class="metrics-table">
-            <thead>
-              <tr>
-                <th>Metric</th>
-                <th>Odometry Alone</th>
-                <th>RTAB-Map SLAM</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Final position error</th>
-                <td>1.28m (5.1% drift)</td>
-                <td class="metric-good">~0m</td>
-              </tr>
-              <tr>
-                <th>Lateral deviation</th>
-                <td>1.0m</td>
-                <td class="metric-good">&lt;0.2m</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
         <div class="metrics-summary">
           <span class="tech-label">Key Result</span>
           <p>RTAB-Map SLAM outperformed pure wheel odometry on a 25.16m closed-loop course. Lateral deviation stayed below 0.2m compared to 1.0m for odometry alone, and the estimated path dimensions matched the 5.10 x 7.48m ground truth to within 8%.</p>
+        </div>
+        <div class="slam-comparison" aria-label="SLAM loop closure comparison">
+          <figure class="slam-frame">
+            <img src="assets/images/slam-before.png" alt="SLAM map before loop closure with visible trajectory drift">
+            <figcaption>
+              <span>Before</span>
+              Loop still open
+            </figcaption>
+          </figure>
+          <figure class="slam-frame">
+            <img src="assets/images/slam-after.png" alt="SLAM map after loop closure with the trajectory corrected">
+            <figcaption>
+              <span>After</span>
+              Loop closure corrected drift
+            </figcaption>
+          </figure>
         </div>
       </article>
     </section>
