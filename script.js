@@ -1,11 +1,13 @@
 const cursorGlow = document.querySelector(".cursor-glow");
+const finePointer = window.matchMedia("(pointer: fine)");
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function moveCursorGlow(event) {
   document.documentElement.style.setProperty("--cursor-x", `${event.clientX}px`);
   document.documentElement.style.setProperty("--cursor-y", `${event.clientY}px`);
 }
 
-if (cursorGlow && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+if (cursorGlow && finePointer.matches && !reducedMotion.matches) {
   window.addEventListener("pointermove", moveCursorGlow, { passive: true });
 }
 
@@ -89,6 +91,35 @@ if (sectionTargets.length > 0) {
   sectionTargets.forEach((section) => sectionObserver.observe(section));
 }
 
+const demoTabs = [...document.querySelectorAll("[data-demo-tab]")];
+const demoPanels = [...document.querySelectorAll("[data-demo-panel]")];
+
+function setActiveDemo(demoName) {
+  demoTabs.forEach((tab) => {
+    const isActive = tab.dataset.demoTab === demoName;
+    tab.classList.toggle("is-active", isActive);
+    tab.setAttribute("aria-selected", String(isActive));
+  });
+
+  demoPanels.forEach((panel) => {
+    const isActive = panel.dataset.demoPanel === demoName;
+    panel.classList.toggle("is-active", isActive);
+    panel.hidden = !isActive;
+
+    panel.querySelectorAll("video").forEach((video) => {
+      if (isActive) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  });
+}
+
+demoTabs.forEach((tab) => {
+  tab.addEventListener("click", () => setActiveDemo(tab.dataset.demoTab));
+});
+
 // Major changed section: include the new HeroSection image card in media fallback handling.
 document.querySelectorAll(".video-frame, .feature-media, .hero-image-card").forEach((frame) => {
   const media = frame.querySelector("video, img");
@@ -97,3 +128,6 @@ document.querySelectorAll(".video-frame, .feature-media, .hero-image-card").forE
 });
 
 document.querySelectorAll("video").forEach(applySilentLoop);
+
+const activeDemoTab = demoTabs.find((tab) => tab.classList.contains("is-active"));
+if (activeDemoTab) setActiveDemo(activeDemoTab.dataset.demoTab);

@@ -22,9 +22,9 @@
         <span>MOBOROBOT</span>
       </a>
       <div class="nav-links" aria-label="Section links">
-        <a href="#overview">System</a>
-        <a href="#costmap-demo">Costmaps</a>
-        <a href="#coverage-demo">Coverage</a>
+        <a href="#overview">Overview</a>
+        <a href="#methods">Methods</a>
+        <a href="#demos">Demos</a>
         <a href="#rviz">RViz</a>
       </div>
       <a class="nav-github" href="https://github.com/leenslf/duckie-coverage" aria-label="MOBOROBOT GitHub repository">GitHub</a>
@@ -40,13 +40,13 @@
       <span class="rail-dot"></span>
       <span class="rail-label">Overview</span>
     </a>
-    <a class="rail-link" href="#costmap-demo" data-section-link="costmap-demo" aria-label="Costmap demo section">
+    <a class="rail-link" href="#methods" data-section-link="methods" aria-label="Methods section">
       <span class="rail-dot"></span>
-      <span class="rail-label">Costmap</span>
+      <span class="rail-label">Methods</span>
     </a>
-    <a class="rail-link" href="#coverage-demo" data-section-link="coverage-demo" aria-label="Coverage demo section">
+    <a class="rail-link" href="#demos" data-section-link="demos" aria-label="Demos section">
       <span class="rail-dot"></span>
-      <span class="rail-label">Coverage</span>
+      <span class="rail-label">Demos</span>
     </a>
     <a class="rail-link" href="#simulation" data-section-link="simulation" aria-label="Simulation to reality section">
       <span class="rail-dot"></span>
@@ -76,7 +76,7 @@
         <p class="hero-brief">A physical robot that builds its understanding of a space, visualizes safe movement through costmaps, then systematically covers reachable regions without GPS or pre-built maps.</p>
         <div class="hero-actions" aria-label="Hero actions">
           <a class="button button-primary" href="https://github.com/leenslf/duckie-coverage">View on GitHub</a>
-          <a class="button button-secondary" href="#overview">Overview</a>
+          <a class="button button-secondary" href="#demos">Demos</a>
         </div>
       </div>
 
@@ -124,100 +124,238 @@
     <section class="section overview" id="overview" aria-labelledby="overview-title">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">OVERVIEW</p>
+          <p class="eyebrow">Overview</p>
           <h2 id="overview-title">System Overview</h2>
         </div>
       </div>
       <div class="overview-layout" aria-label="MOBOROBOT system overview">
+        <article class="overview-hardware">
+          <div class="hardware-media">
+            <img src="assets/images/robot.png" alt="MOBOROBOT mobile robot hardware platform">
+            <p>Moborobot - mobile robot platform</p>
+          </div>
+          <dl class="hardware-specs" aria-label="Hardware setup specifications">
+            <div>
+              <dt>Compute</dt>
+              <dd>NVIDIA Jetson Orin 16GB</dd>
+            </div>
+            <div>
+              <dt>Camera</dt>
+              <dd>OAK-D Pro Luxonis active stereo + RGB</dd>
+            </div>
+            <div>
+              <dt>Depth</dt>
+              <dd>Hardware stereo engine, 640x400 @ 20fps</dd>
+            </div>
+            <div>
+              <dt>Stereo Baseline</dt>
+              <dd>75mm</dd>
+            </div>
+            <div>
+              <dt>IMU</dt>
+              <dd>BNO085 9-axis accel + gyro + mag, integrated in OAK-D Pro</dd>
+            </div>
+            <div>
+              <dt>Middleware</dt>
+              <dd>ROS 2</dd>
+            </div>
+          </dl>
+        </article>
         <article class="overview-console">
           <div class="overview-console-header">
-            <span class="tech-label">System Flow</span>
-            <span class="console-status">ROS2 Runtime</span>
+            <span class="tech-label">Pipeline</span>
+            <!-- <span class="console-status">ROS2 Runtime</span> -->
           </div>
-          <div class="overview-flow" aria-label="Robotics pipeline">
-            <div class="flow-node">
-              <span>01</span>
-              <h3>Stereo and IMU From Camera</h3>
-              <p>OAK-D Pro provides synchronized stereo depth and inertial data for localization and scene understanding.</p>
+          <div class="overview-flow system-pipeline" aria-label="Robotics pipeline">
+            <svg class="pipeline-arrows" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <marker id="pipeline-arrowhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+                  <path d="M0,0 L7,3.5 L0,7 Z"></path>
+                </marker>
+              </defs>
+              <path d="M23.2 19 H26.5"></path>
+              <path d="M48.4 19 H51.6"></path>
+              <path d="M73.5 19 H76.8"></path>
+              <path d="M12.5 28 V40.5"></path>
+              <path d="M23.2 50 H75 V19 H76.8"></path>
+              <path d="M87.5 28 V40.5"></path>
+              <path d="M87.5 59.5 V74.5"></path>
+            </svg>
+            <div class="pipeline-node pipeline-primary node-camera">
+              <h3>OAK-D Pro</h3>
+              <p>RGB-D + stereo + IMU</p>
             </div>
-            <div class="flow-node">
-              <span>02</span>
-              <h3>RTAB</h3>
-              <p>RTAB-Map fuses visual-inertial input into real-time SLAM, estimating pose while building a usable map.</p>
+            <div class="pipeline-node node-odom">
+              <h3>RTAB-Map Odom</h3>
+              <p>Visual-inertial odometry</p>
             </div>
-            <div class="flow-node emphasis">
-              <span>03</span>
+            <div class="pipeline-node node-slam">
+              <h3>RTAB-Map SLAM</h3>
+              <p>Occupancy map + loop closure</p>
+            </div>
+            <div class="pipeline-node node-nav">
               <h3>Nav2</h3>
-              <p>Nav2 uses the map and costmaps to plan safe motion around obstacles and toward target regions.</p>
+              <p>Costmaps + navigation planning</p>
             </div>
-            <div class="flow-node emphasis">
-              <span>04</span>
-              <h3>Coverage</h3>
-              <p>Coverage planning converts reachable free space into systematic paths so the robot visits the area.</p>
+            <div class="pipeline-node node-cloud">
+              <h3>Point Cloud</h3>
+              <p>Depth from camera</p>
+            </div>
+            <div class="pipeline-node node-coverage">
+              <h3>OpenNav Coverage + Fields2Cover</h3>
+              <p>Coverage path from target area</p>
+            </div>
+            <div class="pipeline-node pipeline-primary node-motors">
+              <h3>Robot Motors</h3>
+              <p>via /cmd_vel</p>
             </div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section demo-feature costmap-feature" id="costmap-demo" aria-labelledby="costmap-demo-title">
+    <section class="section methods" id="methods" aria-labelledby="methods-title">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">COSTMAP DEMO</p>
-          <h2 id="costmap-demo-title">The robot's safety model, visible in real time.</h2>
+          <p class="eyebrow">METHODS</p>
+          <h2 id="methods-title">How the system was built and tested.</h2>
         </div>
-        <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
       </div>
-      <article class="feature-panel">
-        <div class="feature-copy feature-copy-wide">
-          <span class="tech-label">RViz / Costmaps</span>
-          <h3>Understanding the Space</h3>
-          <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
-          <dl class="stats-grid">
-            <div><dt>Input</dt><dd>Live camera feed</dd></div>
-            <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
-            <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
-          </dl>
-        </div>
-        <div class="feature-media panel-surface">
-          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png">
-            <source src="assets/videos/rviz-costmap-demo.mp4" type="video/mp4">
-            Costmap demo video placeholder.
-          </video>
-          <div class="media-fallback">Add assets/videos/rviz-costmap-demo.mp4</div>
-        </div>
-        <div class="feature-media panel-surface feature-media-robot">
-          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.png">
-            <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
-            Real robot deployment video placeholder.
-          </video>
-          <div class="media-fallback">Add real robot media</div>
-        </div>
-      </article>
+
+      <div class="methods-layout">
+        <article class="method-panel">
+          <div class="panel-topline">
+            <span>Tech Stack</span>
+          </div>
+          <div class="method-stack" aria-label="Methods tech stack">
+            <span>ROS 2</span>
+            <span>Docker</span>
+            <span>Nav2</span>
+            <span>RTAB-Map</span>
+            <span>OAK Driver</span>
+            <span>OpenNav</span>
+            <span>Jetson Orin</span>
+          </div>
+        </article>
+
+        <article class="method-panel">
+          <div class="panel-topline">
+            <span>Testing Workflow</span>
+          </div>
+          <ol class="method-steps">
+            <li>
+              <span>01</span>
+              <div>
+                <h3>ROS conventions and TF tree</h3>
+                <p>We aligned the workspace around standard ROS frames, connecting map, odom, base_link, and camera frames so sensor drivers, RTAB-Map, and Nav2 shared the same pose model.</p>
+              </div>
+            </li>
+            <li>
+              <span>02</span>
+              <div>
+                <h3>Motor driver through /cmd_vel</h3>
+                <p>The motor driver was tested with the standard /cmd_vel topic. Containers on the same subnet and ROS_DOMAIN_ID could publish velocity commands from any part of the system.</p>
+              </div>
+            </li>
+            <li>
+              <span>03</span>
+              <div>
+                <h3>RTAB-Map for visual SLAM</h3>
+                <p>We selected RTAB-Map because it supports RGB-D visual odometry, SLAM, loop closure, and map generation from the OAK-D camera's depth and visual streams.</p>
+              </div>
+            </li>
+            <li>
+              <span>04</span>
+              <div>
+                <h3>Nav2 plugins</h3>
+                <p>Nav2 handled planning, control, smoothing, behavior recovery, waypoint following, lifecycle management, velocity smoothing, and local/global costmaps.</p>
+              </div>
+            </li>
+            <li>
+              <span>05</span>
+              <div>
+                <h3>OpenNav Coverage</h3>
+                <p>OpenNav Coverage and Fields2Cover generated coverage paths from polygon field boundaries, producing swaths and paths for visualization and execution through Nav2.</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+      </div>
     </section>
 
-    <section class="section demo-feature coverage-feature" id="coverage-demo" aria-labelledby="coverage-demo-title">
+    <section class="section demos demo-feature" id="demos" aria-labelledby="demos-title">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">COVERAGE DEMO</p>
-          <h2 id="coverage-demo-title">Coverage turns the map into action.</h2>
+          <p class="eyebrow">DEMOS</p>
+          <h2 id="demos-title">Choose what behavior to inspect.</h2>
         </div>
-        <p>Once MOBOROBOT understands the space, coverage planning decides where to go so reachable areas are systematically visited.</p>
+        <div class="demo-switch" role="tablist" aria-label="Demo selector">
+          <button class="demo-tab is-active" type="button" role="tab" id="costmap-demo-tab" aria-selected="true" aria-controls="costmap-demo-panel" data-demo-tab="costmap">Costmap</button>
+          <button class="demo-tab" type="button" role="tab" id="coverage-demo-tab" aria-selected="false" aria-controls="coverage-demo-panel" data-demo-tab="coverage">Coverage</button>
+        </div>
       </div>
-      <article class="feature-panel feature-panel-reverse">
-        <div class="feature-media panel-surface feature-media-wide">
-          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png" data-playback-rate="1.5">
-            <source src="assets/videos/coverage-demo.mp4" type="video/mp4">
-            Coverage demo video placeholder.
-          </video>
-          <div class="media-fallback">Add assets/videos/coverage-demo.mp4</div>
-        </div>
-        <div class="feature-copy">
-          <span class="tech-label">Coverage Planner</span>
-          <h3>Systematic Space Coverage</h3>
-          <p>The robot works through the environment in repeatable passes, using the map and costmap constraints instead of GPS or a pre-built route.</p>
-        </div>
-      </article>
+
+      <div class="demo-panels">
+        <article class="demo-panel costmap-feature is-active" id="costmap-demo-panel" role="tabpanel" aria-labelledby="costmap-demo-tab" data-demo-panel="costmap">
+          <div class="section-heading split-heading demo-panel-heading">
+            <div>
+              <p class="eyebrow">COSTMAP DEMO</p>
+              <h3>The robot's safety model, visible in real time.</h3>
+            </div>
+            <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
+          </div>
+          <div class="feature-panel">
+            <div class="feature-copy feature-copy-wide">
+              <span class="tech-label">RViz / Costmaps</span>
+              <h3>Understanding the Space</h3>
+              <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
+              <dl class="stats-grid">
+                <div><dt>Input</dt><dd>Live camera feed</dd></div>
+                <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
+                <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
+              </dl>
+            </div>
+            <div class="feature-media panel-surface">
+              <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png">
+                <source src="assets/videos/rviz-costmap-demo.mp4" type="video/mp4">
+                Costmap demo video placeholder.
+              </video>
+              <div class="media-fallback">Add assets/videos/rviz-costmap-demo.mp4</div>
+            </div>
+            <div class="feature-media panel-surface feature-media-robot">
+              <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.png">
+                <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
+                Real robot deployment video placeholder.
+              </video>
+              <div class="media-fallback">Add real robot media</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="demo-panel coverage-feature" id="coverage-demo-panel" role="tabpanel" aria-labelledby="coverage-demo-tab" data-demo-panel="coverage" hidden>
+          <div class="section-heading split-heading demo-panel-heading">
+            <div>
+              <p class="eyebrow">COVERAGE DEMO</p>
+              <h3>Coverage turns the map into action.</h3>
+            </div>
+            <p>Once MOBOROBOT understands the space, coverage planning decides where to go so reachable areas are systematically visited.</p>
+          </div>
+          <div class="feature-panel feature-panel-reverse">
+            <div class="feature-media panel-surface feature-media-wide">
+              <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png" data-playback-rate="1.5">
+                <source src="assets/videos/coverage-demo.mp4" type="video/mp4">
+                Coverage demo video placeholder.
+              </video>
+              <div class="media-fallback">Add assets/videos/coverage-demo.mp4</div>
+            </div>
+            <div class="feature-copy">
+              <span class="tech-label">Coverage Planner</span>
+              <h3>Systematic Space Coverage</h3>
+              <p>The robot works through the environment in repeatable passes, using the map and costmap constraints instead of GPS or a pre-built route.</p>
+            </div>
+          </div>
+        </article>
+      </div>
     </section>
 
     <section class="section sim-real" id="simulation" aria-labelledby="simulation-title">
