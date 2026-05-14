@@ -527,6 +527,7 @@ h3 {
 .overview-hardware,
 .overview-console,
 .method-panel,
+.metrics-panel,
 .gallery-card,
 .team-card,
 .feature-copy {
@@ -549,7 +550,8 @@ h3 {
 .feature-copy::before,
 .overview-hardware::before,
 .overview-console::before,
-.method-panel::before {
+.method-panel::before,
+.metrics-panel::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -938,6 +940,86 @@ h3 {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.metrics-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(280px, 0.42fr);
+  gap: 1rem;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+}
+
+.metrics-table-wrap,
+.metrics-summary {
+  position: relative;
+  z-index: 1;
+}
+
+.metrics-table-wrap {
+  overflow-x: auto;
+}
+
+.metrics-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 8px;
+  font-family: var(--mono);
+}
+
+.metrics-table th,
+.metrics-table td {
+  padding: 1rem;
+  border-bottom: 1px solid rgba(14, 165, 255, 0.18);
+  text-align: left;
+  vertical-align: top;
+}
+
+.metrics-table thead th {
+  color: #00101f;
+  background: linear-gradient(135deg, var(--accent), #7dd9ff);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+}
+
+.metrics-table tbody th {
+  width: 34%;
+  color: var(--text);
+  background: rgba(2, 4, 10, 0.4);
+  font-size: 0.78rem;
+}
+
+.metrics-table td {
+  color: var(--muted);
+  background: rgba(2, 4, 10, 0.28);
+  font-size: 0.82rem;
+}
+
+.metrics-table td:last-child {
+  border-left: 1px solid rgba(14, 165, 255, 0.26);
+  background: rgba(14, 165, 255, 0.1);
+}
+
+.metric-good {
+  color: var(--text) !important;
+  font-weight: 900;
+}
+
+.metrics-summary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1rem, 2vw, 1.35rem);
+  border: 1px solid rgba(14, 165, 255, 0.18);
+  border-radius: 12px;
+  background: rgba(2, 4, 10, 0.28);
+}
+
+.metrics-summary p {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.98rem;
 }
 
 .tech-label,
@@ -1367,6 +1449,7 @@ h3 {
   .feature-panel,
   .feature-panel-reverse,
   .overview-hardware,
+  .metrics-panel,
   .methods-layout,
   .split-heading {
     grid-template-columns: 1fr;
@@ -1538,6 +1621,10 @@ h3 {
 
   .overview-console {
     min-height: 0;
+  }
+
+  .metrics-table {
+    min-width: 480px;
   }
 
   .method-steps li {
