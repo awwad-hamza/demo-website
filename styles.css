@@ -556,6 +556,8 @@ h3 {
 
 .panel-surface:hover,
 .overview-hardware:hover,
+.overview-console:hover,
+.metrics-panel:hover,
 .team-card:hover,
 .method-panel:hover {
   transform: translateY(-4px);
@@ -791,6 +793,7 @@ h3 {
 }
 
 .pipeline-node {
+  --pipeline-y: 0px;
   position: relative;
   z-index: 2;
   min-height: 86px;
@@ -802,6 +805,7 @@ h3 {
   border-radius: 14px;
   background: rgba(2, 4, 10, 0.94);
   text-align: center;
+  transform: translateY(var(--pipeline-y));
 }
 
 .pipeline-node h3 {
@@ -854,7 +858,7 @@ h3 {
 .node-motors {
   grid-column: 4;
   grid-row: 3;
-  transform: translateY(0.85rem);
+  --pipeline-y: 0.85rem;
 }
 
 .methods-layout {
