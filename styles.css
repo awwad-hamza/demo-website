@@ -394,8 +394,7 @@ h3 {
 .section-heading p,
 .media-card p,
 .gallery-card p,
-.pipeline-card p,
-.feature-card p,
+.overview-console p,
 .feature-copy p,
 .site-footer p {
   color: var(--muted);
@@ -508,33 +507,11 @@ h3 {
   font-size: 0.72rem;
 }
 
-/* Major changed section: FeatureStrip component */
-.feature-strip {
-  padding-top: clamp(1.5rem, 4vw, 3rem);
-}
-
-.center-heading {
-  max-width: 760px;
-  margin-inline: auto;
-  text-align: center;
-}
-
-.center-heading .eyebrow {
-  justify-content: center;
-}
-
-.feature-strip-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
-}
-
-.feature-card,
 .video-card,
 .hero-shot-card,
 .media-card,
 .panel-surface,
-.pipeline-card,
+.overview-console,
 .gallery-card,
 .team-card,
 .feature-copy {
@@ -550,13 +527,12 @@ h3 {
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
-.feature-card::before,
 .media-card::before,
 .panel-surface::before,
 .gallery-card::before,
 .team-card::before,
 .feature-copy::before,
-.pipeline-card::before {
+.overview-console::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -566,23 +542,14 @@ h3 {
   opacity: 0.6;
 }
 
-.feature-card:hover,
 .media-card:hover,
 .panel-surface:hover,
 .gallery-card:hover,
-.team-card:hover,
-.pipeline-card:hover {
+.team-card:hover {
   transform: translateY(-4px);
   border-color: var(--border-strong);
   background: var(--panel-hover);
   box-shadow: var(--shadow), var(--glow);
-}
-
-.feature-card {
-  min-height: 210px;
-  display: grid;
-  align-content: end;
-  padding: 1.35rem;
 }
 
 .feature-icon {
@@ -623,35 +590,110 @@ h3 {
   margin-bottom: 0;
 }
 
-.pipeline {
+.overview {
+  padding-top: clamp(4rem, 7vw, 6rem);
+}
+
+.overview-layout {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.overview-console {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 520px;
+  padding: clamp(1rem, 2vw, 1.35rem);
+}
+
+.overview-console-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(14, 165, 255, 0.18);
+}
+
+.overview-console-header .tech-label {
+  margin-bottom: 0;
+}
+
+.console-status {
+  color: var(--faint);
+  font: 800 0.72rem/1 var(--mono);
+  text-transform: uppercase;
+}
+
+.overview-flow {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.85rem;
+  align-content: center;
 }
 
-.pipeline-card {
-  min-height: 190px;
-  padding: 1.15rem;
+.flow-node {
+  position: relative;
+  min-height: 245px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+  border: 1px solid rgba(14, 165, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(2, 4, 10, 0.34);
 }
 
-.pipeline-card::after {
+.flow-node::after {
   content: ">";
   position: absolute;
-  right: -0.64rem;
   top: 50%;
+  right: -0.58rem;
   z-index: 2;
   color: var(--accent);
-  font: 900 1.1rem/1 var(--mono);
+  font: 900 1.05rem/1 var(--mono);
   transform: translateY(-50%);
 }
 
-.pipeline-card:last-child::after {
+.flow-node:last-child::after {
   display: none;
 }
 
-.pipeline-card.featured {
+.flow-node span {
+  display: grid;
+  place-items: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin-bottom: auto;
+  border: 1px solid rgba(14, 165, 255, 0.3);
+  border-radius: 50%;
+  color: var(--accent);
+  background: rgba(14, 165, 255, 0.1);
+  font: 900 0.72rem/1 var(--mono);
+}
+
+.flow-node h3 {
+  position: relative;
+  z-index: 1;
+}
+
+.flow-node p {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0;
+  font-size: 0.88rem;
+}
+
+.flow-node.emphasis {
   border-color: var(--border-strong);
-  box-shadow: var(--shadow), var(--glow);
+  background: linear-gradient(180deg, rgba(14, 165, 255, 0.16), rgba(2, 4, 10, 0.36));
+  box-shadow: inset 0 0 36px rgba(14, 165, 255, 0.08);
 }
 
 .tech-label,
@@ -1063,14 +1105,24 @@ h3 {
     order: 0;
   }
 
-  .feature-strip-grid,
-  .pipeline,
   .gallery-grid,
   .team-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .pipeline-card::after {
+  .overview-console {
+    grid-column: 1 / -1;
+  }
+
+  .overview-flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow-node {
+    min-height: 210px;
+  }
+
+  .flow-node::after {
     display: none;
   }
 
@@ -1123,8 +1175,8 @@ h3 {
 
   .hero-actions,
   .comparison-grid,
-  .feature-strip-grid,
-  .pipeline,
+  .overview-layout,
+  .overview-flow,
   .gallery-grid,
   .team-grid,
   .stats-grid {
@@ -1154,8 +1206,8 @@ h3 {
     border-bottom: 0;
   }
 
-  .feature-card {
-    min-height: 180px;
+  .overview-console {
+    min-height: 0;
   }
 
   .feature-media-robot {
