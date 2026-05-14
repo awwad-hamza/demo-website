@@ -89,7 +89,8 @@ if (sectionTargets.length > 0) {
   sectionTargets.forEach((section) => sectionObserver.observe(section));
 }
 
-document.querySelectorAll(".video-frame, .feature-media").forEach((frame) => {
+// Major changed section: include the new HeroSection image card in media fallback handling.
+document.querySelectorAll(".video-frame, .feature-media, .hero-image-card").forEach((frame) => {
   const media = frame.querySelector("video, img");
   const fallback = frame.querySelector(".media-fallback");
   if (media && fallback) attachMediaFallback(media, fallback);

@@ -3,29 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MOBOROBOT maps and covers spaces without GPS or pre-built maps using SLAM, costmaps, and coverage planning.">
-  <title>MOBOROBOT | Mapping & Coverage Robot</title>
+  <meta name="description" content="MOBOROBOT maps and covers spaces without GPS or pre-built maps using stereo perception, SLAM, costmaps, and coverage planning.">
+  <title>MOBOROBOT |  Navigation for Real-World Robotics</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="cursor-glow" aria-hidden="true"></div>
   <a class="skip-link" href="#main">Skip to content</a>
 
+  <!-- Major changed section: premium dark navigation -->
   <header class="site-header" aria-label="Primary navigation">
     <nav class="nav-shell">
       <a class="brand" href="#hero" aria-label="MOBOROBOT project home">
-        <span class="brand-mark"></span>
+        <span class="brand-mark" aria-hidden="true"></span>
         <span>MOBOROBOT</span>
       </a>
       <div class="nav-links" aria-label="Section links">
+        <a href="#overview">System</a>
         <a href="#costmap-demo">Costmaps</a>
         <a href="#coverage-demo">Coverage</a>
         <a href="#rviz">RViz</a>
       </div>
-      <a class="nav-github" href="#team" aria-label="Meet the MOBOROBOT team">Team</a>
+      <a class="nav-github" href="https://github.com/leenslf/duckie-coverage" aria-label="MOBOROBOT GitHub repository">GitHub</a>
     </nav>
   </header>
 
@@ -33,6 +35,10 @@
     <a class="rail-link is-active" href="#hero" data-section-link="hero" aria-label="Hero section" aria-current="true">
       <span class="rail-dot"></span>
       <span class="rail-label">Home</span>
+    </a>
+    <a class="rail-link" href="#features" data-section-link="features" aria-label="Feature strip section">
+      <span class="rail-dot"></span>
+      <span class="rail-label">Features</span>
     </a>
     <a class="rail-link" href="#overview" data-section-link="overview" aria-label="System overview section">
       <span class="rail-dot"></span>
@@ -61,57 +67,99 @@
   </nav>
 
   <main id="main">
-    <section class="hero section-grid" id="hero" aria-labelledby="hero-title">
+    <!-- Major changed section: reusable HeroSection component -->
+    <section class="hero hero-section" id="hero" aria-labelledby="hero-title">
+      <img class="hero-bg" src="assets/images/hero-oakd-pro-slam.png" alt="" aria-hidden="true">
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="hero-copy">
+        <p class="brand-label">MOBOROBOT</p>
         <h1 id="hero-title">
-          <span>MOBOROBOT</span>
-          <span>Mapping&nbsp;&amp;</span>
-          <span>Coverage</span>
-          <!-- <span>Any Space</span> -->
+        <span>Mapless Autonomous Coverage via Stereo-Visual-Inertial Odometry and SLAM</span>
         </h1>
-        <p class="hero-subtitle">No GPS. No pre-built maps. Just onboard mapping, costmaps, and coverage.</p>
-        <p class="hero-brief">A physical robot that builds its understanding of a space, visualizes safe movement through costmaps, then systematically covers reachable regions.</p>
+        <!-- <p class="hero-subtitle">Real-time mapping, obstacle-aware, and coverage planning powered by stereo-inertial perception.</p> -->
+        <p class="hero-brief">A physical robot that builds its understanding of a space, visualizes safe movement through costmaps, then systematically covers reachable regions without GPS or pre-built maps.</p>
         <div class="hero-actions" aria-label="Hero actions">
-          <a class="button button-primary" href="#costmap-demo">Costmap Demo</a>
-          <a class="button button-secondary" href="#coverage-demo">Coverage Demo</a>
+          <a class="button button-primary" href="https://github.com/leenslf/duckie-coverage">View on GitHub</a>
+          <a class="button button-secondary" href="#overview">Overview</a>
         </div>
       </div>
 
-      <div class="hero-visual hero-screens" aria-label="RViz costmap, coverage, and simulation screenshots">
-        <article class="hero-shot-card hero-shot-main">
-          <div class="panel-topline">
-            <span>Costmap</span>
-            <span class="panel-status"> </span>
-          </div>
-          <div class="video-frame screenshot-frame">
-            <img src="assets/images/costmap-rviz-hero.png" alt="RViz costmap screenshot showing autonomous navigation state">
-            <div class="media-fallback">Add assets/images/costmap-rviz-hero.png</div>
+      <div class="hero-feature-bar" aria-label="Core navigation capabilities">
+        <article class="hero-feature-item">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5v-7Z"/><path d="M8.5 10.5h7M8.5 13.5h7"/></svg>
+          </span>
+          <div>
+            <h3>Stereo Perception</h3>
+            <p>OAK-D Pro depth sensing</p>
           </div>
         </article>
+        <article class="hero-feature-item">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 15c2.5-5 5.5-6 8-6"/><path d="M8 9h.01M16 15h.01"/></svg>
+          </span>
+          <div>
+            <h3>Real-Time Mapping</h3>
+            <p>Using SLAM</p>
+          </div>
+        </article>
+        <article class="hero-feature-item">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 19c0-8 14-6 14-14"/><path d="M5 19h5M5 19v-5"/><path d="M15 5h4v4"/></svg>
+          </span>
+          <div>
+            <h3>Intelligent Navigation</h3>
+            <p>Obstacle avoidance &amp; Coverage planning</p>
+          </div>
+        </article>
+        <article class="hero-feature-item">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M4.2 7.5l4.3 2.5M15.5 14l4.3 2.5M19.8 7.5 15.5 10M8.5 14l-4.3 2.5"/><circle cx="12" cy="12" r="4"/></svg>
+          </span>
+          <div>
+            <h3>Built on ROS2</h3>
+            <p>Powered by Jetson Orin</p>
+          </div>
+        </article>
+      </div>
 
-        <div class="hero-shot-pair" aria-label="Supporting navigation screenshots">
-          <article class="hero-shot-card hero-shot-coverage">
-            <div class="panel-topline">
-              <span>Coverage</span>
-              <span class="panel-status"></span>
-            </div>
-            <div class="video-frame coverage-shot-frame">
-              <img src="assets/images/coverage-rviz-01.png" alt="Coverage path screenshot in RViz">
-              <div class="media-fallback">Add assets/images/coverage-rviz-01.png</div>
-            </div>
-          </article>
+    </section>
 
-          <article class="hero-shot-card hero-shot-pointcloud">
-            <div class="panel-topline">
-              <span>Depth Estimation</span>
-              <span class="panel-status"></span>
-            </div>
-            <div class="video-frame pointcloud-shot-frame">
-              <img src="assets/images/simulation-pointcloud-01.png" alt="Simulation point cloud screenshot">
-              <div class="media-fallback">Add assets/images/simulation-pointcloud-01.png</div>
-            </div>
-          </article>
-        </div>
+    <!-- Major changed section: reusable FeatureStrip component -->
+    <section class="feature-strip section" id="features" aria-labelledby="features-title">
+      <div class="section-heading center-heading">
+        <p class="eyebrow">CORE CAPABILITIES</p>
+        <h2 id="features-title">Navigation stack built for messy physical space.</h2>
+      </div>
+      <div class="feature-strip-grid">
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M4 8.5 12 4l8 4.5v7L12 20l-8-4.5v-7Z"/><path d="M8.5 10.5h7M8.5 13.5h7"/></svg>
+          </span>
+          <h3>Stereo Perception</h3>
+          <p>OAK-D Pro depth sensing</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 15c2.5-5 5.5-6 8-6"/><path d="M8 9h.01M16 15h.01"/></svg>
+          </span>
+          <h3>Real-Time Mapping</h3>
+          <p>SLAM &amp; localization</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M5 19c0-8 14-6 14-14"/><path d="M5 19h5M5 19v-5"/><path d="M15 5h4v4"/></svg>
+          </span>
+          <h3>Intelligent Navigation</h3>
+          <p>Coverage planning &amp; obstacle avoidance</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 3v5M12 16v5M4.2 7.5l4.3 2.5M15.5 14l4.3 2.5M19.8 7.5 15.5 10M8.5 14l-4.3 2.5"/><circle cx="12" cy="12" r="4"/></svg>
+          </span>
+          <h3>Built on ROS</h3>
+          <p>Modular &amp; extensible</p>
+        </article>
       </div>
     </section>
 
@@ -122,7 +170,7 @@
       </div>
       <div class="pipeline" aria-label="Robotics pipeline">
         <article class="pipeline-card">
-          <span class="tech-label">Oak Camera</span>
+          <span class="tech-label">OAK Camera</span>
           <h3>Perception</h3>
           <p>Onboard camera observe the space without GPS or prior maps.</p>
         </article>
@@ -153,7 +201,7 @@
       <div class="section-heading split-heading">
         <div>
           <p class="eyebrow">COSTMAP DEMO</p>
-          <h2 id="costmap-demo-title">The robot’s safety model, visible in real time.</h2>
+          <h2 id="costmap-demo-title">The robot's safety model, visible in real time.</h2>
         </div>
         <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
       </div>
@@ -176,7 +224,7 @@
           <div class="media-fallback">Add assets/videos/rviz-costmap-demo.mp4</div>
         </div>
         <div class="feature-media panel-surface feature-media-robot">
-          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.jpg">
+          <video muted loop playsinline autoplay preload="metadata" poster="assets/images/real-robot-01.png">
             <source src="assets/videos/real-robot-demo.mp4" type="video/mp4">
             Real robot deployment video placeholder.
           </video>
@@ -244,7 +292,7 @@
     <section class="section rviz" id="rviz" aria-labelledby="rviz-title">
       <div class="section-heading">
         <p class="eyebrow">COSTMAP / RVIZ BREAKDOWN</p>
-          <h2 id="rviz-title">Mapping and costmap intelligence made visible.</h2>
+        <h2 id="rviz-title">Mapping and costmap intelligence made visible.</h2>
       </div>
       <div class="gallery-grid">
         <article class="gallery-card">
@@ -303,21 +351,31 @@
           <span>Danial Amangeldi</span>
         </a>
       </div>
+      <div class="supervisor-row">
+        <a class="team-card supervisor-card" href="https://web.cs.hacettepe.edu.tr/~ozgurerkent/" aria-label="Ozgur Erkent supervisor profile">
+          <div class="supervisor-details">
+            <span class="tech-label">Supervised by</span>
+            <h3>Assistant Professor</h3>
+            <span>Ozgur Erkent</span>
+          </div>
+          <img src="assets/images/ozgur.png" alt="Ozgur Erkent portrait icon">
+        </a>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div>
       <strong>MOBOROBOT</strong>
-      <p>A robot that maps and covers any space, with no GPS and no pre-built maps.</p>
+      <p>Hacettepe University · Department of Computer Engineering · BBM479 Robotics Lab Capstone · 2025-26</p>
     </div>
     <div class="footer-links">
-      <a href="#">GitHub</a>
-      <span>ROS2</span>
-      <span>Nav2</span>
-      <span>SLAM</span>
-      <span>Gazebo</span>
-      <span>RViz</span>
+      <a class="footer-github" href="https://github.com/leenslf/duckie-coverage" aria-label="MOBOROBOT GitHub repository">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.5a9.5 9.5 0 0 0-3 18.52c.48.08.65-.2.65-.46v-1.62c-2.66.58-3.22-1.12-3.22-1.12-.43-1.1-1.06-1.4-1.06-1.4-.87-.6.07-.58.07-.58.96.07 1.47.99 1.47.99.85 1.46 2.24 1.04 2.78.8.09-.62.34-1.04.61-1.28-2.13-.24-4.36-1.06-4.36-4.72 0-1.04.37-1.9.98-2.56-.1-.24-.43-1.22.09-2.52 0 0 .8-.26 2.61.98A8.96 8.96 0 0 1 12 6.2c.81 0 1.62.11 2.38.32 1.8-1.24 2.6-.98 2.6-.98.52 1.3.2 2.28.1 2.52.61.66.98 1.52.98 2.56 0 3.67-2.24 4.48-4.37 4.72.35.3.66.9.66 1.81v2.69c0 .26.17.55.66.45A9.5 9.5 0 0 0 12 2.5Z" />
+        </svg>
+        <span>GitHub</span>
+      </a>
     </div>
   </footer>
 
