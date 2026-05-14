@@ -315,8 +315,8 @@
     <section class="section demos demo-feature" id="demos" aria-labelledby="demos-title">
       <div class="section-heading split-heading">
         <div>
-          <p class="eyebrow">DEMOS</p>
-          <h2 id="demos-title">Choose what behavior to inspect.</h2>
+          <!-- <p class="eyebrow">DEMOS</p> -->
+          <h2 id="demos-title">Demos</h2>
         </div>
         <div class="demo-switch" role="tablist" aria-label="Demo selector">
           <button class="demo-tab is-active" type="button" role="tab" id="odometry-demo-tab" aria-selected="true" aria-controls="odometry-demo-panel" data-demo-tab="odometry">Odometry &amp; SLAM</button>
@@ -329,29 +329,16 @@
         <article class="demo-panel odometry-feature is-active" id="odometry-demo-panel" role="tabpanel" aria-labelledby="odometry-demo-tab" data-demo-panel="odometry">
           <div class="section-heading split-heading demo-panel-heading">
             <div>
-              <p class="eyebrow">ODOMETRY &amp; SLAM</p>
-              <h3>RTAB-Map turns camera motion into a map.</h3>
+              <p class="eyebrow">SLAM &amp; LOOP CLOSURE DEMO</p>
             </div>
-            <p>Visual-inertial odometry estimates robot motion, while RTAB-Map SLAM builds an occupancy map and closes loops from RGB-D observations.</p>
           </div>
           <div class="feature-panel">
-            <div class="feature-copy feature-copy-wide">
-              <span class="tech-label">RTAB-Map / Point Cloud</span>
-              <h3>Pose, Depth, and Map Feedback</h3>
-              <p>The robot uses OAK-D depth and IMU data to estimate motion, generate point clouds, and maintain a map that downstream navigation can consume.</p>
-              <dl class="stats-grid">
-                <div><dt>Input</dt><dd>RGB-D + IMU</dd></div>
-                <div><dt>Estimate</dt><dd>Visual odometry</dd></div>
-                <div><dt>Output</dt><dd>SLAM map</dd></div>
-              </dl>
-            </div>
-            <div class="feature-media panel-surface">
-              <img src="assets/images/pointcloud-sim.png" alt="Point cloud visualization from simulation">
-              <div class="media-fallback">Add point cloud media</div>
-            </div>
-            <div class="feature-media panel-surface">
-              <img src="assets/images/simulation-pointcloud-01.png" alt="RTAB-Map point cloud and mapping view">
-              <div class="media-fallback">Add SLAM media</div>
+            <div class="feature-media panel-surface feature-media-full noninteractive-media">
+              <video muted loop playsinline autoplay preload="metadata" data-playback-rate="2">
+                <source src="assets/videos/loop-closure.mp4" type="video/mp4">
+                Loop closure demo video placeholder.
+              </video>
+              <div class="media-fallback">Add assets/videos/loop-closure.mp4</div>
             </div>
           </div>
         </article>
@@ -359,22 +346,11 @@
         <article class="demo-panel navigation-feature costmap-feature" id="navigation-demo-panel" role="tabpanel" aria-labelledby="navigation-demo-tab" data-demo-panel="navigation" hidden>
           <div class="section-heading split-heading demo-panel-heading">
             <div>
-              <p class="eyebrow">NAVIGATION</p>
-              <h3>The robot's safety model, visible in real time.</h3>
+              <p class="eyebrow">NAVIGATION DEMO</p>
+              <!-- <h3>The robot's safety model, visible in real time.</h3> -->
             </div>
-            <p>Costmaps turn data into a live spatial model: occupied cells, inflated obstacles, free space, and safe movement regions.</p>
           </div>
           <div class="feature-panel">
-            <div class="feature-copy feature-copy-wide">
-              <span class="tech-label">RViz / Costmaps</span>
-              <h3>Understanding the Space</h3>
-              <p>The costmap view shows how MOBOROBOT separates reachable floor from unsafe areas before coverage behavior is executed.</p>
-              <dl class="stats-grid">
-                <div><dt>Input</dt><dd>Live camera feed</dd></div>
-                <div><dt>Model</dt><dd>Obstacle + inflation layers</dd></div>
-                <div><dt>Output</dt><dd>Safe traversable regions</dd></div>
-              </dl>
-            </div>
             <div class="feature-media panel-surface">
               <video muted loop playsinline autoplay preload="metadata" poster="assets/images/coverage-rviz-01.png">
                 <source src="assets/videos/rviz-costmap-demo.mp4" type="video/mp4">

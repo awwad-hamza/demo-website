@@ -559,7 +559,8 @@ h3 {
 .overview-console:hover,
 .metrics-panel:hover,
 .team-card:hover,
-.method-panel:hover {
+.method-panel:hover,
+.feature-copy:hover {
   transform: translateY(-4px);
   border-color: var(--border-strong);
   background: var(--panel-hover);
@@ -1097,7 +1098,15 @@ h3 {
 
 .costmap-feature .feature-panel {
   grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
-  align-items: center;
+  align-items: stretch;
+}
+
+.costmap-feature .feature-media-robot {
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  aspect-ratio: auto;
+  justify-self: stretch;
 }
 
 .feature-panel-reverse {
@@ -1105,7 +1114,7 @@ h3 {
 }
 
 .coverage-feature .feature-panel {
-  align-items: start;
+  align-items: stretch;
 }
 
 .feature-panel-reverse .feature-media {
@@ -1125,6 +1134,17 @@ h3 {
   min-height: 0;
 }
 
+.feature-media-full {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+  min-height: 0;
+}
+
+.noninteractive-media,
+.noninteractive-media video {
+  pointer-events: none;
+}
+
 .costmap-feature .feature-panel > .feature-media:not(.feature-media-robot) {
   aspect-ratio: 1208 / 844;
   min-height: 0;
@@ -1138,7 +1158,7 @@ h3 {
 }
 
 .coverage-feature .feature-media {
-  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-top: 0;
 }
 
 .feature-media video,
